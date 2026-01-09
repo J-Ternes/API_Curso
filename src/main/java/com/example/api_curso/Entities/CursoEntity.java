@@ -19,7 +19,7 @@ public class CursoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    private UUID id_curso;
 
     @NotBlank(message = "Esse campo é obrigatório!")
     private String nameCurso;

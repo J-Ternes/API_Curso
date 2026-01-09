@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CursoRepository extends JpaRepository<CursoEntity, UUID> {
-Optional<CursoEntity> findByname(String name);
+Optional<CursoEntity> findBynameCurso(String nameCurso);
 }

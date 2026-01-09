@@ -13,7 +13,7 @@ public class CreatedCursoUseCase {
     CursoRepository cursoRepository;
 
     public CursoEntity execute (CursoEntity cursoEntity){
-        this.cursoRepository.findByname(cursoEntity.getNameCurso())
+        this.cursoRepository.findBynameCurso(cursoEntity.getNameCurso())
                 .ifPresent((CursoEntity user) ->{
                     throw new UserFoundException();
                 });
