@@ -17,8 +17,8 @@ public class ProfileCursoUseCase {
     public CursoProfileDTO execute (UUID id_curso){
 
         var curso = this.cursoRepository.findById(id_curso)
-                .orElseThrow(()->{
-                    throw new UsernameNotFoundException("User not found");
+               .orElseThrow(()->{
+                  throw new UsernameNotFoundException("User not found");
                 });
 
     var cursoDTO =  CursoProfileDTO.builder().nameCurso(curso.getNameCurso()).professor(curso.getProfessor())

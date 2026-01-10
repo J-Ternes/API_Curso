@@ -18,7 +18,7 @@ import java.util.UUID;
 public class CursoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID) //Cria o id automaticamente
     private UUID id_curso;
 
     @NotBlank(message = "Esse campo é obrigatório!")
