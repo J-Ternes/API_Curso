@@ -57,6 +57,12 @@ public class CursoController {
          profileCursoUseCase.atualizarCurso(id,cursoEntity);
         return ResponseEntity.ok("Curso atualizado");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete (@PathVariable UUID id){
+        profileCursoUseCase.deletarCurso(id);
+        return ResponseEntity.ok("Curso deletado com sucesso");
+    }
 }
 
 

@@ -43,4 +43,11 @@ public class ProfileCursoUseCase {
         cursoEntityAtualizado.setId_curso(id);
         cursoRepository.save(cursoEntityAtualizado);
     }
+
+    public void deletarCurso(UUID id){
+        var verificaCurso = this.cursoRepository.findById(id).orElseThrow(()->{
+            throw new UsernameNotFoundException("Curso not found");
+        });
+        this.cursoRepository.deleteById(id);
+    }
 }
