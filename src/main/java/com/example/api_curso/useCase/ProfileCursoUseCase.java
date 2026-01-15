@@ -3,6 +3,7 @@ package com.example.api_curso.useCase;
 import com.example.api_curso.Entities.CursoEntity;
 import com.example.api_curso.controllers.CursoRepository;
 import com.example.api_curso.dto.CursoProfileDTO;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -34,11 +35,12 @@ public class ProfileCursoUseCase {
         return cursoRepository.findAll();
     }
 
-    public CursoEntity atualizarCurso (UUID id, CursoEntity cursoEntityAtualizado){
+    @Transactional
+    public void atualizarCurso (UUID id, CursoEntity cursoEntityAtualizado){
         var verificaCurso = this.cursoRepository.findById(id).orElseThrow(()->{
             throw new UsernameNotFoundException("Curso not found");
         });
         cursoEntityAtualizado.setId_curso(id);
-        return cursoRepository.save(cursoEntityAtualizado);
+        cursoRepository.save(cursoEntityAtualizado);
     }
 }

@@ -21,13 +21,13 @@ public class CursoEntity {
     @GeneratedValue(strategy = GenerationType.UUID) //Cria o id automaticamente
     private UUID id_curso;
 
-    @NotBlank(message = "Esse campo é obrigatório!")
+
     private String nameCurso;
 
-    @NotBlank(message = "Esse campo é obrigatório!")
+
     private String professor;
 
-    @NotBlank(message = "Esse campo é obrigatório!")
+
     private String category;
 
     private boolean active;

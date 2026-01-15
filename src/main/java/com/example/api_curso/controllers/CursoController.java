@@ -54,7 +54,7 @@ public class CursoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Object> put(@PathVariable UUID id, @RequestBody CursoEntity cursoEntity){
-        var curso_profile = profileCursoUseCase.execute(UUID.fromString(id.toString()));
+         profileCursoUseCase.atualizarCurso(id,cursoEntity);
         return ResponseEntity.ok("Curso atualizado");
     }
 }
