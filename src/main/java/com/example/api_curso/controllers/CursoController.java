@@ -8,14 +8,13 @@ import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
+@RequestMapping("/cursos")
 
 public class CursoController {
 
@@ -25,7 +24,7 @@ public class CursoController {
     @Autowired
     private ProfileCursoUseCase profileCursoUseCase;
 
-    @PostMapping("/cursos")
+    @PostMapping()
     public ResponseEntity<Object> create(@Valid @RequestBody CursoEntity cursoEntity) {
         try {
             var result = createdCursoUseCase.execute(cursoEntity);
@@ -36,11 +35,15 @@ public class CursoController {
         }
     }
 
-    @GetMapping("/cursos")
-    public ResponseEntity<Object> get(HttpServletRequest request) {
-        var id_curso = request.getAttribute("id_curso");
+    @GetMapping()
+    public List<CursoEntity> mostrarCursos() {
+        return profileCursoUseCase.listarCurso();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> get(@PathVariable UUID id, HttpServletRequest request) {
         try {
-            var curso_profile = profileCursoUseCase.execute(UUID.fromString(id_curso.toString()));
+            var curso_profile = profileCursoUseCase.execute(UUID.fromString(id.toString()));
 
             return ResponseEntity.ok().body(curso_profile);
 
@@ -48,4 +51,13 @@ public class CursoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> put(@PathVariable UUID id, @RequestBody CursoEntity cursoEntity){
+        var curso_profile = profileCursoUseCase.execute(UUID.fromString(id.toString()));
+        return ResponseEntity.ok("Curso atualizado");
+    }
 }
+
+
+
